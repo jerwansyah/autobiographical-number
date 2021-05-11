@@ -2,11 +2,10 @@
 from datetime import datetime
 
 
-def findAutobioNum(base, k):
+def findAutobioNum(base):
     num = list()
     i = 0
-    j = 0
-    while k != 0:
+    while True:
         while (i < base):
             # digit terakhir
             if base == 8:
@@ -32,17 +31,14 @@ def findAutobioNum(base, k):
                     return ''.join(num)
                 else:
                     if len(num) == base:
-                        k = base
                         if int(num[-1], base=base) == base-1:
                             i = base
                         else:
                             i = int(num[-1], base=base) + 1
                     else:
                         i = 0
-                        k += 1
             else:
                 i += 1
-        k -= 1
         num = num[:-1]
         num = list(increment(''.join(num), base))
         i = 0
@@ -89,7 +85,7 @@ if __name__ == '__main__':
         basis = int(input("Masukan basis (8/10/16): "))
 
     start = datetime.now()
-    sol = findAutobioNum(basis, 1)
+    sol = findAutobioNum(basis)
 
     try:
         autonum = int(str(sol), base=basis)
